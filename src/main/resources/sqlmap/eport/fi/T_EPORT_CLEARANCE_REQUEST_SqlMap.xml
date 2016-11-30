@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_EPORT_CLEARANCE_REQUEST">
+	<resultMap id="BaseResultMap" class="com.pay.eport.model.EPortClearanceRequest">
+		<result column="RECORD_NO" property="recordNo" jdbcType="DECIMAL" />
+		<result column="SYS_TRACE_NO" property="sysTraceNo" jdbcType="VARCHAR" />
+		<result column="EPORT_CODE" property="eportCode" jdbcType="VARCHAR" />
+		<result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+		<result column="BUSINESS_NO" property="businessNo" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="RESV_FLD1" property="resvFld1" jdbcType="VARCHAR" />
+		<result column="RESV_FLD2" property="resvFld2" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" class="com.pay.eport.model.EPortClearanceRequest"
+		extends="T_EPORT_CLEARANCE_REQUEST.BaseResultMap">
+		<result column="REQUEST_CONTEXT" property="requestContext"
+			jdbcType="CLOB" />
+	</resultMap>
+	<sql id="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause">
+		<iterate property="oredCriteria" conjunction="or" prepend="where"
+			removeFirstPrepend="iterate">
+			<isEqual property="oredCriteria[].valid" compareValue="true">
+				(
+				<iterate prepend="and" property="oredCriteria[].criteriaWithoutValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithoutValue[]$ ]]>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value# ]]>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithListValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithListValue[].condition$ ]]>
+					<iterate property="oredCriteria[].criteriaWithListValue[].values"
+						open="(" close=")" conjunction=",">
+              		<![CDATA[ #oredCriteria[].criteriaWithListValue[].values[]# ]]>
+					</iterate>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue"
+					conjunction="and">
+            	<![CDATA[
+	            $oredCriteria[].criteriaWithBetweenValue[].condition$
+	            #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+	            #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+            	]]>
+				</iterate>
+				)
+			</isEqual>
+		</iterate>
+	</sql>
+
+	<sql id="T_EPORT_CLEARANCE_REQUEST.Base_Column_List">
+		RECORD_NO, SYS_TRACE_NO, EPORT_CODE, ORDER_NO, BUSINESS_NO,
+		CREATE_DATE,
+		RESV_FLD1,
+		RESV_FLD2
+	</sql>
+
+	<sql id="T_EPORT_CLEARANCE_REQUEST.Blob_Column_List">
+		REQUEST_CONTEXT
+	</sql>
+
+	<select id="T_EPORT_CLEARANCE_REQUEST.selectByExampleWithBLOBs"
+		resultMap="ResultMapWithBLOBs" parameterClass="com.pay.eport.model.EPortClearanceRequestCriteria">
+		select
+		<isParameterPresent>
+			<isEqual property="distinct" compareValue="true">
+				distinct
+			</isEqual>
+		</isParameterPresent>
+		<include refid="T_EPORT_CLEARANCE_REQUEST.Base_Column_List" />
+		,
+		<include refid="T_EPORT_CLEARANCE_REQUEST.Blob_Column_List" />
+		from T_EPORT_CLEARANCE_REQUEST
+		<isParameterPresent>
+			<include refid="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause" />
+			<isNotNull property="orderByClause">
+          		<![CDATA[ order by $orderByClause$ ]]>
+			</isNotNull>
+		</isParameterPresent>
+	</select>
+
+	<select id="T_EPORT_CLEARANCE_REQUEST.selectByExample"
+		resultMap="BaseResultMap" parameterClass="com.pay.eport.model.EPortClearanceRequestCriteria">
+		select
+		<isParameterPresent>
+			<isEqual property="distinct" compareValue="true">
+				distinct
+			</isEqual>
+		</isParameterPresent>
+		<include refid="T_EPORT_CLEARANCE_REQUEST.Base_Column_List" />
+		from T_EPORT_CLEARANCE_REQUEST
+		<isParameterPresent>
+			<include refid="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause" />
+			<isNotNull property="orderByClause">
+          		<![CDATA[ order by $orderByClause$ ]]>
+			</isNotNull>
+		</isParameterPresent>
+	</select>
+
+	<select id="T_EPORT_CLEARANCE_REQUEST.selectByPrimaryKey"
+		resultMap="ResultMapWithBLOBs" parameterClass="com.pay.eport.model.EPortClearanceRequest">
+		select
+		<include refid="T_EPORT_CLEARANCE_REQUEST.Base_Column_List" />
+		,
+		<include refid="T_EPORT_CLEARANCE_REQUEST.Blob_Column_List" />
+      	<![CDATA[
+      	from T_EPORT_CLEARANCE_REQUEST
+      	where RECORD_NO = #recordNo#
+      	]]>
+	</select>
+
+	<insert id="T_EPORT_CLEARANCE_REQUEST.insert" parameterClass="com.pay.eport.model.EPortClearanceRequest">
+      	<![CDATA[
+      	insert into T_EPORT_CLEARANCE_REQUEST (RECORD_NO, SYS_TRACE_NO, EPORT_CODE, ORDER_NO, BUSINESS_NO, CREATE_DATE, 
+        	RESV_FLD1, RESV_FLD2, REQUEST_CONTEXT)
+      	values (#recordNo#, #sysTraceNo#, #eportCode#, #orderNo#, #businessNo#, #createDate#, 
+        	#resvFld1#, #resvFld2#, #requestContext#)
+      	]]>
+	</insert>
+
+	<insert id="T_EPORT_CLEARANCE_REQUEST.create" parameterClass="com.pay.eport.model.EPortClearanceRequest">
+      	<![CDATA[
+      	insert into T_EPORT_CLEARANCE_REQUEST (RECORD_NO, SYS_TRACE_NO, EPORT_CODE, ORDER_NO, BUSINESS_NO, CREATE_DATE, 
+        	RESV_FLD1, RESV_FLD2, REQUEST_CONTEXT)
+      	values ((S_T_EPORT_CLEARANCE_REQUEST.nextVal), #sysTraceNo#, #eportCode#, #orderNo#, #businessNo#, #createDate#, 
+        	#resvFld1#, #resvFld2#, #requestContext#)
+      	]]>
+	</insert>
+
+	<insert id="T_EPORT_CLEARANCE_REQUEST.insertSelective"
+		parameterClass="com.pay.eport.model.EPortClearanceRequest">
+		insert into T_EPORT_CLEARANCE_REQUEST
+		<dynamic prepend="(">
+			<isNotNull prepend="," property="recordNo">
+				RECORD_NO
+			</isNotNull>
+			<isNotNull prepend="," property="sysTraceNo">
+				SYS_TRACE_NO
+			</isNotNull>
+			<isNotNull prepend="," property="eportCode">
+				EPORT_CODE
+			</isNotNull>
+			<isNotNull prepend="," property="orderNo">
+				ORDER_NO
+			</isNotNull>
+			<isNotNull prepend="," property="businessNo">
+				BUSINESS_NO
+			</isNotNull>
+			<isNotNull prepend="," property="createDate">
+				CREATE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="resvFld1">
+				RESV_FLD1
+			</isNotNull>
+			<isNotNull prepend="," property="resvFld2">
+				RESV_FLD2
+			</isNotNull>
+			<isNotNull prepend="," property="requestContext">
+				REQUEST_CONTEXT
+			</isNotNull>
+			)
+		</dynamic>
+		values
+		<dynamic prepend="(">
+			<isNotNull prepend="," property="recordNo">
+          		<![CDATA[ #recordNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="sysTraceNo">
+          		<![CDATA[ #sysTraceNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="eportCode">
+          		<![CDATA[ #eportCode# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="orderNo">
+          		<![CDATA[ #orderNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="businessNo">
+          		<![CDATA[ #businessNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="createDate">
+          		<![CDATA[ #createDate# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="resvFld1">
+          		<![CDATA[ #resvFld1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="resvFld2">
+          		<![CDATA[ #resvFld2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="requestContext">
+          		<![CDATA[ #requestContext# ]]>
+			</isNotNull>
+			)
+		</dynamic>
+	</insert>
+
+	<select id="T_EPORT_CLEARANCE_REQUEST.countByExample"
+		parameterClass="com.pay.eport.model.EPortClearanceRequestCriteria"
+		resultClass="java.lang.Integer">
+		select count(*) from T_EPORT_CLEARANCE_REQUEST
+		<include refid="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause" />
+	</select>
+
+	<update id="T_EPORT_CLEARANCE_REQUEST.updateByExampleSelective">
+		update T_EPORT_CLEARANCE_REQUEST
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="record.recordNo">
+          		<![CDATA[ RECORD_NO = #record.recordNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.sysTraceNo">
+          		<![CDATA[ SYS_TRACE_NO = #record.sysTraceNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.eportCode">
+          		<![CDATA[ EPORT_CODE = #record.eportCode# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.orderNo">
+          		<![CDATA[ ORDER_NO = #record.orderNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.businessNo">
+          		<![CDATA[ BUSINESS_NO = #record.businessNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.createDate">
+          		<![CDATA[ CREATE_DATE = #record.createDate# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.resvFld1">
+          		<![CDATA[ RESV_FLD1 = #record.resvFld1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.resvFld2">
+          		<![CDATA[ RESV_FLD2 = #record.resvFld2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.requestContext">
+          		<![CDATA[ REQUEST_CONTEXT = #record.requestContext# ]]>
+			</isNotNull>
+		</dynamic>
+		<isParameterPresent>
+			<include refid="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+
+	<update id="T_EPORT_CLEARANCE_REQUEST.updateByExampleWithBLOBs">
+      	<![CDATA[
+      	update T_EPORT_CLEARANCE_REQUEST
+      	set RECORD_NO = #record.recordNo#,
+	        SYS_TRACE_NO = #record.sysTraceNo#,
+	        EPORT_CODE = #record.eportCode#,
+	        ORDER_NO = #record.orderNo#,
+	        BUSINESS_NO = #record.businessNo#,
+	        CREATE_DATE = #record.createDate#,
+	        RESV_FLD1 = #record.resvFld1#,
+	        RESV_FLD2 = #record.resvFld2#,
+	        REQUEST_CONTEXT = #record.requestContext#
+      	]]>
+		<isParameterPresent>
+			<include refid="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+
+	<update id="T_EPORT_CLEARANCE_REQUEST.updateByExample">
+      	<![CDATA[
+      	update T_EPORT_CLEARANCE_REQUEST
+      	set RECORD_NO = #record.recordNo#,
+	        SYS_TRACE_NO = #record.sysTraceNo#,
+	        EPORT_CODE = #record.eportCode#,
+	        ORDER_NO = #record.orderNo#,
+	        BUSINESS_NO = #record.businessNo#,
+	        CREATE_DATE = #record.createDate#,
+	        RESV_FLD1 = #record.resvFld1#,
+	        RESV_FLD2 = #record.resvFld2#
+      	]]>
+		<isParameterPresent>
+			<include refid="T_EPORT_CLEARANCE_REQUEST.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+
+	<update id="T_EPORT_CLEARANCE_REQUEST.updateByPrimaryKeySelective"
+		parameterClass="com.pay.eport.model.EPortClearanceRequest">
+		update T_EPORT_CLEARANCE_REQUEST
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="sysTraceNo">
+          		<![CDATA[ SYS_TRACE_NO = #sysTraceNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="eportCode">
+          		<![CDATA[ EPORT_CODE = #eportCode# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="orderNo">
+          		<![CDATA[ ORDER_NO = #orderNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="businessNo">
+          		<![CDATA[ BUSINESS_NO = #businessNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="createDate">
+          		<![CDATA[ CREATE_DATE = #createDate# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="resvFld1">
+          		<![CDATA[ RESV_FLD1 = #resvFld1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="resvFld2">
+          		<![CDATA[ RESV_FLD2 = #resvFld2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="requestContext">
+          		<![CDATA[ REQUEST_CONTEXT = #requestContext# ]]>
+			</isNotNull>
+		</dynamic>
+	    <![CDATA[
+	    where RECORD_NO = #recordNo#
+	    ]]>
+	</update>
+
+	<update id="T_EPORT_CLEARANCE_REQUEST.updateByPrimaryKeyWithBLOBs"
+		parameterClass="com.pay.eport.model.EPortClearanceRequest">
+      	<![CDATA[
+      	update T_EPORT_CLEARANCE_REQUEST
+      	set SYS_TRACE_NO = #sysTraceNo#,
+	        EPORT_CODE = #eportCode#,
+	        ORDER_NO = #orderNo#,
+	        BUSINESS_NO = #businessNo#,
+	        CREATE_DATE = #createDate#,
+	        RESV_FLD1 = #resvFld1#,
+	        RESV_FLD2 = #resvFld2#,
+	        REQUEST_CONTEXT = #requestContext#
+	      	where RECORD_NO = #recordNo#
+      	]]>
+	</update>
+
+	<update id="T_EPORT_CLEARANCE_REQUEST.updateByPrimaryKey"
+		parameterClass="com.pay.eport.model.EPortClearanceRequest">
+      	<![CDATA[
+      	update T_EPORT_CLEARANCE_REQUEST
+      	set SYS_TRACE_NO = #sysTraceNo#,
+	        EPORT_CODE = #eportCode#,
+	        ORDER_NO = #orderNo#,
+	        BUSINESS_NO = #businessNo#,
+	        CREATE_DATE = #createDate#,
+	        RESV_FLD1 = #resvFld1#,
+	        RESV_FLD2 = #resvFld2#
+	      	where RECORD_NO = #recordNo#
+      	]]>
+	</update>
+</sqlMap>

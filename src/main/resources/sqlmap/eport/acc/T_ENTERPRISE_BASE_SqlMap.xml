@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_ENTERPRISE_BASE">
+	<resultMap id="BaseResultMap" class="com.pay.eport.model.EnterpriseBase">
+		<result column="ENTERPRISE_ID" property="enterpriseId"
+			jdbcType="DECIMAL" />
+		<result column="MEMBER_CODE" property="memberCode" jdbcType="DECIMAL" />
+		<result column="MERCHANT_CODE" property="merchantCode"
+			jdbcType="DECIMAL" />
+		<result column="ENTERPRISE_TYPE" property="enterpriseType"
+			jdbcType="DECIMAL" />
+		<result column="AUDI_STATUS" property="audiStatus" jdbcType="DECIMAL" />
+		<result column="ZH_NAME" property="zhName" jdbcType="VARCHAR" />
+		<result column="EN_NAME" property="enName" jdbcType="VARCHAR" />
+		<result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+		<result column="NATION" property="nation" jdbcType="VARCHAR" />
+		<result column="REGION" property="region" jdbcType="VARCHAR" />
+		<result column="CITY" property="city" jdbcType="VARCHAR" />
+		<result column="INDUSTRY_KIND" property="industryKind"
+			jdbcType="VARCHAR" />
+		<result column="INDUSTRY_TYPE" property="industryType"
+			jdbcType="VARCHAR" />
+		<result column="IN_INDUSTRY" property="inIndustry" jdbcType="VARCHAR" />
+		<result column="BIZ_LICENCE_CODE" property="bizLicenceCode"
+			jdbcType="VARCHAR" />
+		<result column="EXPIRE" property="expire" jdbcType="TIMESTAMP" />
+		<result column="GOV_CODE" property="govCode" jdbcType="VARCHAR" />
+		<result column="TAX_CODE" property="taxCode" jdbcType="VARCHAR" />
+		<result column="RISK_LEVE_CODE" property="riskLeveCode"
+			jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="SEARCH_KEY" property="searchKey" jdbcType="VARCHAR" />
+		<result column="IDENTITY" property="identity" jdbcType="DECIMAL" />
+		<result column="SETTLEMENT_CYCLE" property="settlementCycle"
+			jdbcType="DECIMAL" />
+		<result column="PERCENTAGE" property="percentage" jdbcType="DECIMAL" />
+		<result column="SECOND_SETTLEMENT_CYCLE" property="secondSettlementCycle"
+			jdbcType="DECIMAL" />
+		<result column="ASSURE_PERCENTAGE" property="assurePercentage"
+			jdbcType="DECIMAL" />
+		<result column="ASSURE_SETTLEMENT_CYCLE" property="assureSettlementCycle"
+			jdbcType="DECIMAL" />
+		<result column="WITHDRAW_FEE" property="withdrawFee" jdbcType="VARCHAR" />
+		<result column="SIGN_PROCESS_FEE" property="signProcessFee"
+			jdbcType="VARCHAR" />
+		<result column="RISK_FEE" property="riskFee" jdbcType="VARCHAR" />
+		<result column="CHARGEBACK_FEE" property="chargebackFee"
+			jdbcType="VARCHAR" />
+		<result column="FEE_CURRENCY_CODE" property="feeCurrencyCode"
+			jdbcType="VARCHAR" />
+		<result column="TRANSACTION_TYPE" property="transactionType"
+			jdbcType="VARCHAR" />
+		<result column="TRADE_TYPE" property="tradeType" jdbcType="VARCHAR" />
+		<result column="GATEWAY_TYPE" property="gatewayType" jdbcType="VARCHAR" />
+		<result column="ACCOUNT_MODE" property="accountMode" jdbcType="DECIMAL" />
+		<result column="ECONOMY_TYPE" property="economyType" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ResultMap-EnterpriseBaseMember" class="com.pay.eport.model.EnterpriseBase">
+		<result column="ENTERPRISE_ID" property="enterpriseId"
+			jdbcType="DECIMAL" />
+		<result column="MEMBER_CODE" property="memberCode" jdbcType="DECIMAL" />
+		<result column="AUDI_STATUS" property="audiStatus" jdbcType="DECIMAL" />
+		<result column="ZH_NAME" property="zhName" jdbcType="VARCHAR" />
+		<result column="EN_NAME" property="enName" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<sql id="T_ENTERPRISE_BASE.Example_Where_Clause">
+		<iterate property="oredCriteria" conjunction="or" prepend="where"
+			removeFirstPrepend="iterate">
+			<isEqual property="oredCriteria[].valid" compareValue="true">
+				(
+				<iterate prepend="and" property="oredCriteria[].criteriaWithoutValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithoutValue[]$ ]]>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value# ]]>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithListValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithListValue[].condition$ ]]>
+					<iterate property="oredCriteria[].criteriaWithListValue[].values"
+						open="(" close=")" conjunction=",">
+              			<![CDATA[ #oredCriteria[].criteriaWithListValue[].values[]# ]]>
+					</iterate>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue"
+					conjunction="and">
+		            <![CDATA[
+		            $oredCriteria[].criteriaWithBetweenValue[].condition$
+		            #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+		            #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+		            ]]>
+				</iterate>
+				)
+			</isEqual>
+		</iterate>
+	</sql>
+
+	<sql id="T_ENTERPRISE_BASE.Base_Column_List">
+		ENTERPRISE_ID, MEMBER_CODE, MERCHANT_CODE, ENTERPRISE_TYPE,
+		AUDI_STATUS, ZH_NAME,
+		EN_NAME, WEBSITE, NATION, REGION, CITY,
+		INDUSTRY_KIND, INDUSTRY_TYPE,
+		IN_INDUSTRY,
+		BIZ_LICENCE_CODE, EXPIRE,
+		GOV_CODE, TAX_CODE, RISK_LEVE_CODE, CREATE_DATE, UPDATE_DATE,
+		SEARCH_KEY, IDENTITY, SETTLEMENT_CYCLE, PERCENTAGE,
+		SECOND_SETTLEMENT_CYCLE, ASSURE_PERCENTAGE,
+		ASSURE_SETTLEMENT_CYCLE,
+		WITHDRAW_FEE, SIGN_PROCESS_FEE, RISK_FEE, CHARGEBACK_FEE,
+		FEE_CURRENCY_CODE, TRANSACTION_TYPE, TRADE_TYPE, GATEWAY_TYPE,
+		ACCOUNT_MODE, ECONOMY_TYPE
+	</sql>
+
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterClass="com.pay.eport.model.EnterpriseBaseCriteria">
+		select
+		<isParameterPresent>
+			<isEqual property="distinct" compareValue="true">
+				distinct
+			</isEqual>
+		</isParameterPresent>
+		<include refid="T_ENTERPRISE_BASE.Base_Column_List" />
+		from T_ENTERPRISE_BASE
+		<isParameterPresent>
+			<include refid="T_ENTERPRISE_BASE.Example_Where_Clause" />
+			<isNotNull property="orderByClause">
+          		<![CDATA[ order by $orderByClause$ ]]>
+			</isNotNull>
+		</isParameterPresent>
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterClass="com.pay.eport.model.EnterpriseBase">
+		select
+		<include refid="T_ENTERPRISE_BASE.Base_Column_List" />
+      	<![CDATA[
+      	from T_ENTERPRISE_BASE
+      	where ENTERPRISE_ID = #enterpriseId#
+      	]]>
+	</select>
+
+	<select id="countByExample" parameterClass="com.pay.eport.model.EnterpriseBaseCriteria"
+		resultClass="java.lang.Integer">
+		select count(*) from T_ENTERPRISE_BASE
+		<include refid="T_ENTERPRISE_BASE.Example_Where_Clause" />
+	</select>
+
+	<select id="selectByMemberCodeForEPort" parameterClass="java.lang.String"
+		resultMap="ResultMap-EnterpriseBaseMember">
+		select
+		enb.ENTERPRISE_ID, enb.MEMBER_CODE, enb.ZH_NAME,
+		enb.EN_NAME,
+		enb.AUDI_STATUS, mem.STATUS
+		from
+		T_ENTERPRISE_BASE enb,
+		T_MEMBER mem
+		where enb.MEMBER_CODE =
+		mem.MEMBER_CODE
+		and enb.MEMBER_CODE
+		=
+		#memberCode#
+	</select>
+</sqlMap>

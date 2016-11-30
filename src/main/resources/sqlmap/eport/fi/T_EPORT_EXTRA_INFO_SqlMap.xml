@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_EPORT_EXTRA_INFO">
+	<resultMap id="BaseResultMap" class="com.pay.eport.model.EPortExtraInfo">
+		<result column="RECORD_NO" property="recordNo" jdbcType="DECIMAL" />
+		<result column="EPORT_ORDER_NO" property="eportOrderNo"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_CHAR_INFO_1" property="extraCharInfo1"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_2" property="extraCharInfo2"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_3" property="extraCharInfo3"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_4" property="extraCharInfo4"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_5" property="extraCharInfo5"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_6" property="extraCharInfo6"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_7" property="extraCharInfo7"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_8" property="extraCharInfo8"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_9" property="extraCharInfo9"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_CHAR_INFO_10" property="extraCharInfo10"
+			jdbcType="VARCHAR" />
+		<result column="EXTRA_NUM_INFO_1" property="extraNumInfo1"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_2" property="extraNumInfo2"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_3" property="extraNumInfo3"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_4" property="extraNumInfo4"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_5" property="extraNumInfo5"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_6" property="extraNumInfo6"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_7" property="extraNumInfo7"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_8" property="extraNumInfo8"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_9" property="extraNumInfo9"
+			jdbcType="DECIMAL" />
+		<result column="EXTRA_NUM_INFO_10" property="extraNumInfo10"
+			jdbcType="DECIMAL" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="T_EPORT_EXTRA_INFO.Example_Where_Clause">
+		<iterate property="oredCriteria" conjunction="or" prepend="where"
+			removeFirstPrepend="iterate">
+			<isEqual property="oredCriteria[].valid" compareValue="true">
+				(
+				<iterate prepend="and" property="oredCriteria[].criteriaWithoutValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithoutValue[]$ ]]>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value# ]]>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithListValue"
+					conjunction="and">
+            		<![CDATA[ $oredCriteria[].criteriaWithListValue[].condition$ ]]>
+					<iterate property="oredCriteria[].criteriaWithListValue[].values"
+						open="(" close=")" conjunction=",">
+              		<![CDATA[ #oredCriteria[].criteriaWithListValue[].values[]# ]]>
+					</iterate>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue"
+					conjunction="and">
+            		<![CDATA[
+            		$oredCriteria[].criteriaWithBetweenValue[].condition$
+            		#oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+            		#oredCriteria[].criteriaWithBetweenValue[].values[1]#
+            		]]>
+				</iterate>
+				)
+			</isEqual>
+		</iterate>
+	</sql>
+
+	<sql id="T_EPORT_EXTRA_INFO.Base_Column_List">
+		RECORD_NO, EPORT_ORDER_NO, EXTRA_CHAR_INFO_1,
+		EXTRA_CHAR_INFO_2,
+		EXTRA_CHAR_INFO_3,
+		EXTRA_CHAR_INFO_4,
+		EXTRA_CHAR_INFO_5, EXTRA_CHAR_INFO_6, EXTRA_CHAR_INFO_7,
+		EXTRA_CHAR_INFO_8,
+		EXTRA_CHAR_INFO_9, EXTRA_CHAR_INFO_10,
+		EXTRA_NUM_INFO_1, EXTRA_NUM_INFO_2,
+		EXTRA_NUM_INFO_3,
+		EXTRA_NUM_INFO_4,
+		EXTRA_NUM_INFO_5, EXTRA_NUM_INFO_6, EXTRA_NUM_INFO_7,
+		EXTRA_NUM_INFO_8,
+		EXTRA_NUM_INFO_9, EXTRA_NUM_INFO_10, CREATE_DATE,
+		UPDATE_DATE
+	</sql>
+
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterClass="com.pay.eport.model.EPortExtraInfoCriteria">
+		select
+		<isParameterPresent>
+			<isEqual property="distinct" compareValue="true">
+				distinct
+			</isEqual>
+		</isParameterPresent>
+		<include refid="T_EPORT_EXTRA_INFO.Base_Column_List" />
+		from T_EPORT_EXTRA_INFO
+		<isParameterPresent>
+			<include refid="T_EPORT_EXTRA_INFO.Example_Where_Clause" />
+			<isNotNull property="orderByClause">
+          		<![CDATA[ order by $orderByClause$ ]]>
+			</isNotNull>
+		</isParameterPresent>
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterClass="com.pay.eport.model.EPortExtraInfo">
+		select
+		<include refid="T_EPORT_EXTRA_INFO.Base_Column_List" />
+      	<![CDATA[
+      	from T_EPORT_EXTRA_INFO
+      	where RECORD_NO = #recordNo#
+      	]]>
+	</select>
+
+	<insert id="create" parameterClass="com.pay.eport.model.EPortExtraInfo">
+      	<![CDATA[
+      	insert into T_EPORT_EXTRA_INFO (RECORD_NO, EPORT_ORDER_NO, EXTRA_CHAR_INFO_1, EXTRA_CHAR_INFO_2, EXTRA_CHAR_INFO_3, 
+        	EXTRA_CHAR_INFO_4, EXTRA_CHAR_INFO_5, EXTRA_CHAR_INFO_6, EXTRA_CHAR_INFO_7, EXTRA_CHAR_INFO_8, 
+        	EXTRA_CHAR_INFO_9, EXTRA_CHAR_INFO_10, EXTRA_NUM_INFO_1, EXTRA_NUM_INFO_2, EXTRA_NUM_INFO_3, 
+        	EXTRA_NUM_INFO_4, EXTRA_NUM_INFO_5, EXTRA_NUM_INFO_6, EXTRA_NUM_INFO_7, EXTRA_NUM_INFO_8, 
+        	EXTRA_NUM_INFO_9, EXTRA_NUM_INFO_10, CREATE_DATE, UPDATE_DATE)
+      	values ((S_T_EPORT_EXTRA_INFO.nextVal), #eportOrderNo#, #extraCharInfo1#, #extraCharInfo2#, #extraCharInfo3#, 
+	        #extraCharInfo4#, #extraCharInfo5#, #extraCharInfo6#, #extraCharInfo7#, #extraCharInfo8#, 
+	        #extraCharInfo9#, #extraCharInfo10#, #extraNumInfo1#, #extraNumInfo2#, #extraNumInfo3#, 
+	        #extraNumInfo4#, #extraNumInfo5#, #extraNumInfo6#, #extraNumInfo7#, #extraNumInfo8#, 
+	        #extraNumInfo9#, #extraNumInfo10#, #createDate#, #updateDate#)
+      	]]>
+	</insert>
+
+	<insert id="insertSelective" parameterClass="com.pay.eport.model.EPortExtraInfo">
+		insert into T_EPORT_EXTRA_INFO
+		<dynamic prepend="(">
+			<isNotNull prepend="," property="recordNo">
+				RECORD_NO
+			</isNotNull>
+			<isNotNull prepend="," property="eportOrderNo">
+				EPORT_ORDER_NO
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo1">
+				EXTRA_CHAR_INFO_1
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo2">
+				EXTRA_CHAR_INFO_2
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo3">
+				EXTRA_CHAR_INFO_3
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo4">
+				EXTRA_CHAR_INFO_4
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo5">
+				EXTRA_CHAR_INFO_5
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo6">
+				EXTRA_CHAR_INFO_6
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo7">
+				EXTRA_CHAR_INFO_7
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo8">
+				EXTRA_CHAR_INFO_8
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo9">
+				EXTRA_CHAR_INFO_9
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo10">
+				EXTRA_CHAR_INFO_10
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo1">
+				EXTRA_NUM_INFO_1
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo2">
+				EXTRA_NUM_INFO_2
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo3">
+				EXTRA_NUM_INFO_3
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo4">
+				EXTRA_NUM_INFO_4
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo5">
+				EXTRA_NUM_INFO_5
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo6">
+				EXTRA_NUM_INFO_6
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo7">
+				EXTRA_NUM_INFO_7
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo8">
+				EXTRA_NUM_INFO_8
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo9">
+				EXTRA_NUM_INFO_9
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo10">
+				EXTRA_NUM_INFO_10
+			</isNotNull>
+			<isNotNull prepend="," property="createDate">
+				CREATE_DATE
+			</isNotNull>
+			<isNotNull prepend="," property="updateDate">
+				UPDATE_DATE
+			</isNotNull>
+			)
+		</dynamic>
+		values
+		<dynamic prepend="(">
+			<isNotNull prepend="," property="recordNo">
+          		<![CDATA[ #recordNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="eportOrderNo">
+          		<![CDATA[ #eportOrderNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo1">
+          		<![CDATA[ #extraCharInfo1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo2">
+          		<![CDATA[ #extraCharInfo2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo3">
+          		<![CDATA[ #extraCharInfo3# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo4">
+          		<![CDATA[ #extraCharInfo4# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo5">
+          		<![CDATA[ #extraCharInfo5# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo6">
+          		<![CDATA[ #extraCharInfo6# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo7">
+          		<![CDATA[ #extraCharInfo7# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo8">
+          		<![CDATA[ #extraCharInfo8# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo9">
+          		<![CDATA[ #extraCharInfo9# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo10">
+          		<![CDATA[ #extraCharInfo10# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo1">
+          		<![CDATA[ #extraNumInfo1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo2">
+          		<![CDATA[ #extraNumInfo2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo3">
+          		<![CDATA[ #extraNumInfo3# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo4">
+          		<![CDATA[ #extraNumInfo4# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo5">
+          		<![CDATA[ #extraNumInfo5# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo6">
+          		<![CDATA[ #extraNumInfo6# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo7">
+          		<![CDATA[ #extraNumInfo7# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo8">
+          		<![CDATA[ #extraNumInfo8# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo9">
+          		<![CDATA[ #extraNumInfo9# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo10">
+          		<![CDATA[ #extraNumInfo10# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="createDate">
+          		<![CDATA[ #createDate# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="updateDate">
+          		<![CDATA[ #updateDate# ]]>
+			</isNotNull>
+			)
+		</dynamic>
+	</insert>
+
+	<select id="countByExample" parameterClass="com.pay.eport.model.EPortExtraInfoCriteria"
+		resultClass="java.lang.Integer">
+		select count(*) from T_EPORT_EXTRA_INFO
+		<include refid="T_EPORT_EXTRA_INFO.Example_Where_Clause" />
+	</select>
+
+	<update id="updateByExampleSelective">
+		update T_EPORT_EXTRA_INFO
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="record.recordNo">
+          		<![CDATA[ RECORD_NO = #record.recordNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.eportOrderNo">
+          		<![CDATA[ EPORT_ORDER_NO = #record.eportOrderNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo1">
+          		<![CDATA[ EXTRA_CHAR_INFO_1 = #record.extraCharInfo1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo2">
+          		<![CDATA[ EXTRA_CHAR_INFO_2 = #record.extraCharInfo2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo3">
+          		<![CDATA[ EXTRA_CHAR_INFO_3 = #record.extraCharInfo3# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo4">
+          		<![CDATA[ EXTRA_CHAR_INFO_4 = #record.extraCharInfo4# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo5">
+          		<![CDATA[ EXTRA_CHAR_INFO_5 = #record.extraCharInfo5# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo6">
+          		<![CDATA[ EXTRA_CHAR_INFO_6 = #record.extraCharInfo6# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo7">
+          		<![CDATA[ EXTRA_CHAR_INFO_7 = #record.extraCharInfo7# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo8">
+          		<![CDATA[ EXTRA_CHAR_INFO_8 = #record.extraCharInfo8# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo9">
+          		<![CDATA[ EXTRA_CHAR_INFO_9 = #record.extraCharInfo9# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraCharInfo10">
+          		<![CDATA[ EXTRA_CHAR_INFO_10 = #record.extraCharInfo10# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo1">
+          		<![CDATA[ EXTRA_NUM_INFO_1 = #record.extraNumInfo1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo2">
+          		<![CDATA[ EXTRA_NUM_INFO_2 = #record.extraNumInfo2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo3">
+          		<![CDATA[ EXTRA_NUM_INFO_3 = #record.extraNumInfo3# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo4">
+          		<![CDATA[ EXTRA_NUM_INFO_4 = #record.extraNumInfo4# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo5">
+          		<![CDATA[ EXTRA_NUM_INFO_5 = #record.extraNumInfo5# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo6">
+          		<![CDATA[ EXTRA_NUM_INFO_6 = #record.extraNumInfo6# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo7">
+          		<![CDATA[ EXTRA_NUM_INFO_7 = #record.extraNumInfo7# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo8">
+          		<![CDATA[ EXTRA_NUM_INFO_8 = #record.extraNumInfo8# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo9">
+          		<![CDATA[ EXTRA_NUM_INFO_9 = #record.extraNumInfo9# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.extraNumInfo10">
+          		<![CDATA[ EXTRA_NUM_INFO_10 = #record.extraNumInfo10# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.createDate">
+          		<![CDATA[ CREATE_DATE = #record.createDate# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="record.updateDate">
+          		<![CDATA[ UPDATE_DATE = #record.updateDate# ]]>
+			</isNotNull>
+		</dynamic>
+		<isParameterPresent>
+			<include refid="T_EPORT_EXTRA_INFO.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+
+	<update id="updateByExample">
+      	<![CDATA[
+      	update T_EPORT_EXTRA_INFO
+      	set RECORD_NO = #record.recordNo#,
+	        EPORT_ORDER_NO = #record.eportOrderNo#,
+	        EXTRA_CHAR_INFO_1 = #record.extraCharInfo1#,
+	        EXTRA_CHAR_INFO_2 = #record.extraCharInfo2#,
+	        EXTRA_CHAR_INFO_3 = #record.extraCharInfo3#,
+	        EXTRA_CHAR_INFO_4 = #record.extraCharInfo4#,
+	        EXTRA_CHAR_INFO_5 = #record.extraCharInfo5#,
+	        EXTRA_CHAR_INFO_6 = #record.extraCharInfo6#,
+	        EXTRA_CHAR_INFO_7 = #record.extraCharInfo7#,
+	        EXTRA_CHAR_INFO_8 = #record.extraCharInfo8#,
+	        EXTRA_CHAR_INFO_9 = #record.extraCharInfo9#,
+	        EXTRA_CHAR_INFO_10 = #record.extraCharInfo10#,
+	        EXTRA_NUM_INFO_1 = #record.extraNumInfo1#,
+	        EXTRA_NUM_INFO_2 = #record.extraNumInfo2#,
+	        EXTRA_NUM_INFO_3 = #record.extraNumInfo3#,
+	        EXTRA_NUM_INFO_4 = #record.extraNumInfo4#,
+	        EXTRA_NUM_INFO_5 = #record.extraNumInfo5#,
+	        EXTRA_NUM_INFO_6 = #record.extraNumInfo6#,
+	        EXTRA_NUM_INFO_7 = #record.extraNumInfo7#,
+	        EXTRA_NUM_INFO_8 = #record.extraNumInfo8#,
+	        EXTRA_NUM_INFO_9 = #record.extraNumInfo9#,
+	        EXTRA_NUM_INFO_10 = #record.extraNumInfo10#,
+	        CREATE_DATE = #record.createDate#,
+	        UPDATE_DATE = #record.updateDate#
+      	]]>
+		<isParameterPresent>
+			<include refid="T_EPORT_EXTRA_INFO.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+
+	<update id="updateByPrimaryKeySelective"
+		parameterClass="com.pay.eport.model.EPortExtraInfo">
+		update T_EPORT_EXTRA_INFO
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="eportOrderNo">
+          		<![CDATA[ EPORT_ORDER_NO = #eportOrderNo# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo1">
+          		<![CDATA[ EXTRA_CHAR_INFO_1 = #extraCharInfo1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo2">
+          		<![CDATA[ EXTRA_CHAR_INFO_2 = #extraCharInfo2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo3">
+          		<![CDATA[ EXTRA_CHAR_INFO_3 = #extraCharInfo3# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo4">
+          		<![CDATA[ EXTRA_CHAR_INFO_4 = #extraCharInfo4# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo5">
+          		<![CDATA[ EXTRA_CHAR_INFO_5 = #extraCharInfo5# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo6">
+          		<![CDATA[ EXTRA_CHAR_INFO_6 = #extraCharInfo6# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo7">
+          		<![CDATA[ EXTRA_CHAR_INFO_7 = #extraCharInfo7# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo8">
+          		<![CDATA[ EXTRA_CHAR_INFO_8 = #extraCharInfo8# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo9">
+          		<![CDATA[ EXTRA_CHAR_INFO_9 = #extraCharInfo9# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraCharInfo10">
+          		<![CDATA[ EXTRA_CHAR_INFO_10 = #extraCharInfo10# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo1">
+          		<![CDATA[ EXTRA_NUM_INFO_1 = #extraNumInfo1# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo2">
+          		<![CDATA[ EXTRA_NUM_INFO_2 = #extraNumInfo2# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo3">
+          		<![CDATA[ EXTRA_NUM_INFO_3 = #extraNumInfo3# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo4">
+          		<![CDATA[ EXTRA_NUM_INFO_4 = #extraNumInfo4# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo5">
+          		<![CDATA[ EXTRA_NUM_INFO_5 = #extraNumInfo5# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo6">
+          		<![CDATA[ EXTRA_NUM_INFO_6 = #extraNumInfo6# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo7">
+          		<![CDATA[ EXTRA_NUM_INFO_7 = #extraNumInfo7# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo8">
+          		<![CDATA[ EXTRA_NUM_INFO_8 = #extraNumInfo8# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo9">
+          		<![CDATA[ EXTRA_NUM_INFO_9 = #extraNumInfo9# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="extraNumInfo10">
+          		<![CDATA[ EXTRA_NUM_INFO_10 = #extraNumInfo10# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="createDate">
+          		<![CDATA[ CREATE_DATE = #createDate# ]]>
+			</isNotNull>
+			<isNotNull prepend="," property="updateDate">
+          		<![CDATA[ UPDATE_DATE = #updateDate# ]]>
+			</isNotNull>
+		</dynamic>
+      	<![CDATA[
+      	where RECORD_NO = #recordNo#
+      	]]>
+	</update>
+
+	<update id="updateByPrimaryKey"
+		parameterClass="com.pay.eport.model.EPortExtraInfo">
+      	<![CDATA[
+      	update T_EPORT_EXTRA_INFO
+      	set EPORT_ORDER_NO = #eportOrderNo#,
+	        EXTRA_CHAR_INFO_1 = #extraCharInfo1#,
+	        EXTRA_CHAR_INFO_2 = #extraCharInfo2#,
+	        EXTRA_CHAR_INFO_3 = #extraCharInfo3#,
+	        EXTRA_CHAR_INFO_4 = #extraCharInfo4#,
+	        EXTRA_CHAR_INFO_5 = #extraCharInfo5#,
+	        EXTRA_CHAR_INFO_6 = #extraCharInfo6#,
+	        EXTRA_CHAR_INFO_7 = #extraCharInfo7#,
+	        EXTRA_CHAR_INFO_8 = #extraCharInfo8#,
+	        EXTRA_CHAR_INFO_9 = #extraCharInfo9#,
+	        EXTRA_CHAR_INFO_10 = #extraCharInfo10#,
+	        EXTRA_NUM_INFO_1 = #extraNumInfo1#,
+	        EXTRA_NUM_INFO_2 = #extraNumInfo2#,
+	        EXTRA_NUM_INFO_3 = #extraNumInfo3#,
+	        EXTRA_NUM_INFO_4 = #extraNumInfo4#,
+	        EXTRA_NUM_INFO_5 = #extraNumInfo5#,
+	        EXTRA_NUM_INFO_6 = #extraNumInfo6#,
+	        EXTRA_NUM_INFO_7 = #extraNumInfo7#,
+	        EXTRA_NUM_INFO_8 = #extraNumInfo8#,
+	        EXTRA_NUM_INFO_9 = #extraNumInfo9#,
+	        EXTRA_NUM_INFO_10 = #extraNumInfo10#,
+	        CREATE_DATE = #createDate#,
+	        UPDATE_DATE = #updateDate#
+      	where RECORD_NO = #recordNo#
+      	]]>
+	</update>
+</sqlMap>

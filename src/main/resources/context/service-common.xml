@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="EPort-DeclareRequestDAO" class="com.pay.inf.dao.impl.BaseDAOImpl">
+		<property name="sqlMapClient" ref="fi-gatewaySqlMapClient" />
+		<property name="namespace" value="T_EPORT_CLEARANCE_REQUEST" />
+	</bean>
+
+	<bean id="EPort-DeclareReponseDAO" class="com.pay.inf.dao.impl.BaseDAOImpl">
+		<property name="sqlMapClient" ref="fi-gatewaySqlMapClient" />
+		<property name="namespace" value="T_EPORT_CLEARANCE_RESPONSE" />
+	</bean>
+
+	<bean id="EPort-DeclareRecordService"
+		class="com.pay.eport.service.impl.EPortClearanceRecordServiceImpl">
+		<property name="requestDao" ref="EPort-DeclareRequestDAO" />
+		<property name="responseDao" ref="EPort-DeclareReponseDAO" />
+	</bean>
+
+	<bean id="EPort-ExtraInfoDAO" class="com.pay.inf.dao.impl.BaseDAOImpl">
+		<property name="sqlMapClient" ref="fi-gatewaySqlMapClient" />
+		<property name="namespace" value="T_EPORT_EXTRA_INFO" />
+	</bean>
+
+	<bean id="EPort-ExtraInfoService" class="com.pay.eport.service.impl.EPortExtraInfoServiceImpl">
+		<property name="ePortExtraInfoDao" ref="EPort-ExtraInfoDAO" />
+	</bean>
+
+	<bean id="EPort-Base-DeclareService" class="com.pay.eport.service.AbstractEPortDeclareService"
+		abstract="true">
+		<property name="ePortRecordService" ref="EPort-DeclareRecordService" />
+	</bean>
+
+	<bean id="EPort-Base-ValidateService"
+		class="com.pay.eport.service.AbstractDeclareRequestValidateService"
+		abstract="true">
+	</bean>
+</beans>
